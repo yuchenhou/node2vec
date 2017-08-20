@@ -28,8 +28,7 @@ def input_fn(data_set):
     )
 
 
-def evaluate(model_dir, training_file, testing_file):
-    dimension = 4
+def evaluate(model_dir, training_file, testing_file, dimension):
     training_set = learn.datasets.base.load_csv_without_header(training_file, numpy.float, numpy.float)
     testing_set = learn.datasets.base.load_csv_without_header(testing_file, numpy.float, numpy.float)
     model = tensorflow.estimator.DNNRegressor(
@@ -41,17 +40,19 @@ def evaluate(model_dir, training_file, testing_file):
     return metrics.mean_squared_error(actual_target, testing_set.target)
 
 
-def main():
-    model_dir = '../log'
-    training_file = '../emb/training.csv'
-    testing_file = '../emb/testing.csv'
-    embeddings_file = '../emb/countryLevelCollaboration.emb'
-    links_file = '../graph/countryLevelCollaboration.tsv'
+def main(data_set_name):
+    dimension = 4
+    model_dir = '../log/' + data_set_name
+    training_file = '../emb/' + data_set_name + '_training.csv'
+    testing_file = '../emb/' + data_set_name + '_testing.csv'
+    embeddings_file = '../emb/' + data_set_name + '.emb'
+    links_file = '../graph/' + data_set_name + '.tsv'
     if os.path.exists(model_dir):
         shutil.rmtree(model_dir)
     make_data_files(embeddings_file, links_file, training_file, testing_file)
-    print evaluate(model_dir, training_file, testing_file)
+    print evaluate(model_dir, training_file, testing_file, dimension)
 
 
 if __name__ == '__main__':
-    main()
+    for data_set_name in ['airport', 'collaboration', 'congress', 'forum']:
+        main(data_set_name)

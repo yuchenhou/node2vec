@@ -95,10 +95,13 @@ def learn_embeddings(walks):
     return
 
 
-def main(args):
+def main(args, data_set_name):
     '''
     Pipeline for representational learning for all nodes in a graph.
     '''
+    args.dimensions = 4
+    args.input = '../graph/' + data_set_name + '.tsv'
+    args.output = '../emb/' + data_set_name + '.emb'
     nx_G = read_graph()
     G = node2vec.Graph(nx_G, args.directed, args.p, args.q)
     G.preprocess_transition_probs()
@@ -108,7 +111,5 @@ def main(args):
 
 if __name__ == "__main__":
     args = parse_args()
-    args.input = '../graph/countryLevelCollaboration.tsv'
-    args.output = '../emb/countryLevelCollaboration.emb'
-    args.dimensions = 4
-    main(args)
+    for data_set_name in ['airport', 'collaboration', 'congress', 'forum']:
+        main(args, data_set_name)
