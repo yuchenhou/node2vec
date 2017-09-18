@@ -30,7 +30,6 @@ def evaluate(data_set_name, training_file, testing_file, dimension, num_epochs, 
 def main():
     for data_set_name in ['airport', 'collaboration', 'congress', 'forum']:
         errors = pandas.DataFrame(columns=['num_epochs', 'dimension', 'error', ])
-    # for data_set_name in ['airport', ]:
         training_file = os.path.join('../emb', data_set_name + '_training.csv')
         testing_file = os.path.join('../emb', data_set_name + '_testing.csv')
         for num_epochs in range(1, 10, 1):
@@ -38,7 +37,7 @@ def main():
                 error = numpy.mean([
                     evaluate(
                         data_set_name, training_file, testing_file, dimension, num_epochs, trial
-                    ) for trial in range(20)
+                    ) for trial in range(10)
                 ])
                 errors.loc[len(errors)] = [num_epochs, dimension, error]
         print(errors)
