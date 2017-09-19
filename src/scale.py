@@ -26,3 +26,7 @@ def main():
         training_file = '../emb/' + data_set_name + '_training.csv'
         testing_file = '../emb/' + data_set_name + '_testing.csv'
         make_data_files(data_set_name, training_file, testing_file)
+
+
+if __name__ == '__main__':
+    main()

@@ -19,7 +19,7 @@ def evaluate(data_set_name, training_file, testing_file, dimension, num_epochs, 
         shutil.rmtree(model_dir)
     training_set = learn.datasets.base.load_csv_without_header(training_file, numpy.float, numpy.float)
     testing_set = learn.datasets.base.load_csv_without_header(testing_file, numpy.float, numpy.float)
-    feature_columns = [tensorflow.feature_column.numeric_column('x', [2 * dimension])]
+    feature_columns = [tensorflow.feature_column.numeric_column('x', [2 * 1])]
     model = tensorflow.estimator.DNNRegressor([dimension, dimension], feature_columns, model_dir)
     model.train(input_fn(training_set, num_epochs, ))
     predictions = list(model.predict(input_fn(testing_set, 1, )))
@@ -32,8 +32,8 @@ def main():
         errors = pandas.DataFrame(columns=['num_epochs', 'dimension', 'error', ])
         training_file = os.path.join('../emb', data_set_name + '_training.csv')
         testing_file = os.path.join('../emb', data_set_name + '_testing.csv')
-        for num_epochs in range(1, 10, 1):
-            for dimension in [4, ]:
+        for num_epochs in range(3, 4, 1):
+            for dimension in range(10, 100, 10):
                 error = numpy.mean([
                     evaluate(
                         data_set_name, training_file, testing_file, dimension, num_epochs, trial

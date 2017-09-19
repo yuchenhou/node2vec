@@ -21,7 +21,7 @@ def plot(attribute):
         [attribute],
     )
     print statistics
-    axes = statistics.plot.bar(rot=0, figsize=(16, 8,), grid=True, )
+    axes = statistics.plot.bar(rot=0)
     axes.set_xlabel('data_set')
     axes.set_ylabel(attribute)
     axes.get_figure().savefig('../log/' + attribute)

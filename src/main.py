@@ -99,7 +99,7 @@ def main(args, data_set_name):
     '''
     Pipeline for representational learning for all nodes in a graph.
     '''
-    args.dimensions = 4
+    args.dimensions = 1
     args.input = '../graph/' + data_set_name + '.tsv'
     args.output = '../emb/' + data_set_name + '.emb'
     nx_G = read_graph()
