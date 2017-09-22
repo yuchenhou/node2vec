@@ -101,7 +101,7 @@ def main(args, data_set_name):
     '''
     args.dimensions = 1
     args.input = '../graph/' + data_set_name + '.tsv'
-    args.output = '../emb/' + data_set_name + '.emb'
+    args.output = '../data/' + data_set_name + '.emb'
     nx_G = read_graph()
     G = node2vec.Graph(nx_G, args.directed, args.p, args.q)
     G.preprocess_transition_probs()
@@ -111,5 +111,5 @@ def main(args, data_set_name):
 
 if __name__ == "__main__":
     args = parse_args()
-    for data_set_name in ['airport', 'collaboration', 'congress', 'forum']:
+    for data_set_name in ['airport', 'authors', 'collaboration', 'facebook', 'congress', 'forum']:
         main(args, data_set_name)

@@ -4,7 +4,7 @@ from sklearn import preprocessing, model_selection
 
 
 def make_data_files(data_set_name, training_file, testing_file):
-    embeddings_file = '../emb/' + data_set_name + '.emb'
+    embeddings_file = '../data/' + data_set_name + '.emb'
     links_file = '../graph/' + data_set_name + '.tsv'
     embeddings = pandas.read_csv(embeddings_file, sep=' ', header=None, index_col=0, skiprows=1)
     embeddings.sort_index(inplace=True)
@@ -22,9 +22,9 @@ def make_data_files(data_set_name, training_file, testing_file):
 
 
 def main():
-    for data_set_name in ['airport', 'collaboration', 'congress', 'forum', ]:
-        training_file = '../emb/' + data_set_name + '_training.csv'
-        testing_file = '../emb/' + data_set_name + '_testing.csv'
+    for data_set_name in ['airport', 'authors', 'collaboration', 'facebook', 'congress', 'forum']:
+        training_file = '../data/' + data_set_name + '_training.csv'
+        testing_file = '../data/' + data_set_name + '_testing.csv'
         make_data_files(data_set_name, training_file, testing_file)
 
 

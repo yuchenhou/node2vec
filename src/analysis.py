@@ -14,7 +14,7 @@ def analyze(data_set_name):
 
 
 def plot(attribute):
-    data_sets = ['airport', 'collaboration', 'congress', 'forum']
+    data_sets = ['airport', 'authors', 'collaboration', 'facebook', 'congress', 'forum']
     statistics = pandas.DataFrame(
         [analyze(data_set_name)[attribute] for data_set_name in data_sets],
         data_sets,

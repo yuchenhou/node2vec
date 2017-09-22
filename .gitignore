@@ -13,4 +13,4 @@ build
 .settings
 .idea
 log
-emb
+data
