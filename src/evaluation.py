@@ -35,8 +35,8 @@ def evaluate(data_set_name, num_hidden_layers, units_per_layer, num_epochs, tria
 def main():
     for data_set_name in ['airport', 'authors', 'collaboration', 'facebook', 'congress', 'forum']:
         errors = pandas.DataFrame(columns=['num_epochs', 'num_hidden_layers', 'units_per_layer', 'error', ])
-        for num_epochs in range(4, 5, 1):
-            for num_hidden_layers in range(1, 10, 1):
+        for num_epochs in range(1, 5, 1):
+            for num_hidden_layers in range(2, 3, 1):
                 for units_per_layer in range(90, 100, 10):
                     error = numpy.mean([
                         evaluate(

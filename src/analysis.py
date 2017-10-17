@@ -7,9 +7,9 @@ def analyze(data_set_name):
     data_set_file = '../graph/' + data_set_name + '.tsv'
     graph = networkx.read_weighted_edgelist(data_set_file, nodetype=int)
     return {
-        'number_of_nodes': networkx.number_of_nodes(graph),
-        'number_of_edges': networkx.number_of_edges(graph),
-        'average_degree': numpy.average(networkx.degree(graph).values()),
+        'number-of-nodes': networkx.number_of_nodes(graph),
+        'number-of-edges': networkx.number_of_edges(graph),
+        'average-degree': numpy.average(networkx.degree(graph).values()),
     }
 
 
@@ -28,7 +28,7 @@ def plot(attribute):
 
 
 def main():
-    for attribute in ['number_of_nodes', 'number_of_edges', 'average_degree']:
+    for attribute in ['number-of-nodes', 'number-of-edges', 'average-degree']:
         plot(attribute)
 
 
