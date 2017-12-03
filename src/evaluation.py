@@ -41,7 +41,7 @@ def main():
                     error = numpy.mean([
                         evaluate(
                             data_set_name, num_hidden_layers, units_per_layer, num_epochs, trial
-                        ) for trial in range(30)
+                        ) for trial in range(10)
                     ])
                     errors.loc[len(errors)] = [num_epochs, num_hidden_layers, units_per_layer, error]
         print(errors)

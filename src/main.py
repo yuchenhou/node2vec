@@ -8,7 +8,7 @@ node2vec: Scalable Feature Learning for Networks
 Aditya Grover and Jure Leskovec 
 Knowledge Discovery and Data Mining (KDD), 2016
 '''
-
+import time
 import argparse
 import numpy as np
 import networkx as nx
@@ -99,7 +99,9 @@ def main(args):
     '''
     Pipeline for representational learning for all nodes in a graph.
     '''
-    for data_set_name in ['airport', 'authors', 'collaboration', 'facebook', 'congress', 'forum']:
+    # for data_set_name in ['airport', 'authors', 'collaboration', 'facebook', 'congress', 'forum']:
+    for data_set_name in ['airport', 'collaboration', 'congress', 'forum']:
+        start_time = time.time()
         args.dimensions = 1
         args.input = '../graph/' + data_set_name + '.tsv'
         args.output = '../data/' + data_set_name + '.emb'
@@ -108,7 +110,8 @@ def main(args):
         G.preprocess_transition_probs()
         walks = G.simulate_walks(args.num_walks, args.walk_length)
         learn_embeddings(walks)
-
+        elapsed_time = time.time() - start_time
+        print(data_set_name, elapsed_time)
 
 if __name__ == "__main__":
     args = parse_args()
